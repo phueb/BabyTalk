@@ -1,2 +1,5 @@
-# CompleteUtterance
-Use the simple recurrent network to complete a child-directed speech utterance
+<div align="center">
+ <img src="images/logo.png" width="200"> 
+</div>
+
+Coming Soon...
