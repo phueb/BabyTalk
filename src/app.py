@@ -18,14 +18,20 @@ def after_request(response):
 @app.route('/', methods=['POST', 'GET'])
 def generate():
 
-    if request.method == 'POST':
-        text = request.get_json()['text']
+    # if request.method == 'POST':
+    #     print(request.form)
+    #     print(request.form.get('text'))
+    #     text = request.form.get('Start')
+    #     print(text)
+    # else:
+    #     text = request.args.get('text')
+
+    text = None
+
+    if text is None:
+        return jsonify({'result': 'Did not receive text'})
     else:
-        text = request.args.get('text')
-
-    res = {'result': text + ' COMPLETION'}
-
-    return jsonify(res)
+        return jsonify({'result': text + ' COMPLETION'})
 
 
 # def generate_terms(model,
