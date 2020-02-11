@@ -15,10 +15,13 @@ def after_request(response):
     return response
 
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST', 'GET'])
 def generate():
 
-    text = request.form.get('text')
+    if request.method == 'POST':
+        text = request.form.get('text')
+    else:
+        text = request.args.get('text')
 
     res = {'result': text + ' COMPLETION'}
 
