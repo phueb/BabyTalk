@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 # import numpy as np
 from flask import jsonify
 
@@ -7,14 +7,14 @@ app = Flask(__name__)
 app.config.from_pyfile('server_configs.py')
 
 
-@app.route('/', methods=['GET', 'POST'])
-def generate(phrase='Hello'):
+@app.route('/', methods=['POST'])
+def generate():
 
-    output_dict = {}
-    terms = phrase.split()
-    for num_samples in [10, 10]:
-        output_dict[num_samples] = ['test phrase 1', 'test phrase 2']  # generate_terms(model, terms, num_samples=num_samples)
-    return jsonify(output_dict)
+    text = request.form.get('text')
+
+    res = {'result': text + ' COMPLETION'}
+
+    return jsonify(res)
 
 
 # def generate_terms(model,
