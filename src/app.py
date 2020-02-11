@@ -19,7 +19,7 @@ def after_request(response):
 def generate():
 
     if request.method == 'POST':
-        text = request.form.get('text')
+        text = request.get_json()['text']
     else:
         text = request.args.get('text')
 
