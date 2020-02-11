@@ -28,8 +28,13 @@ def generate():
 
     text = None
 
+    res = {'result': 'Did not receive text',
+           'headers': {'Access-Control-Allow-Origin': '*',
+                       'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                       'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS'}}
+
     if text is None:
-        return jsonify({'result': 'Did not receive text'})
+        return jsonify(res)
     else:
         return jsonify({'result': text + ' COMPLETION'})
 
