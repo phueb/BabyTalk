@@ -1,18 +1,10 @@
-from flask import Flask, request
+from flask import Flask, request, make_response
 # import numpy as np
 from flask import jsonify
 
 
 app = Flask(__name__)
 app.config.from_pyfile('server_configs.py')
-
-
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    return response
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -33,10 +25,14 @@ def generate():
                        'Access-Control-Allow-Headers': 'Content-Type,Authorization',
                        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS'}}
 
-    if text is None:
-        return jsonify(res)
-    else:
-        return jsonify({'result': text + ' COMPLETION'})
+    response = make_response(jsonify({'result': 'no text'}))
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+
+    print(response)
+    print(response.headers)
+    return response
 
 
 # def generate_terms(model,
