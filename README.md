@@ -42,6 +42,9 @@ chmod +x app.fcgi
 To push changes to hostgator, first add `ssh://USERNAME@HOST:2222/home2/USERNAME/public_html/babytalk`
 to your local repository.
 
+Note: To avoid Cross-Origin resource errors when requesting a response from another domain, add `Header always set Access-Control-Allow-Origin "*"` to `.htaccess`.
+
+
 ### Compatibility
 
 Developed on Ubuntu 16.04 and Python2.6. Designed to be used with FCGI server on hostgator.com
