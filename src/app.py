@@ -7,31 +7,22 @@ app = Flask(__name__)
 app.config.from_pyfile('server_configs.py')
 
 
-@app.route('/', methods=['POST', 'GET'])
-def generate():
+@app.route('/', methods=['POST'])
+def demo():
+    """
+    requires that incoming request is JSOn formatted.
+    return JSON response, with attribute "result" that contains teh completed string.
+    """
+    print(request.form)
+    payload = request.get_json()
+    text = payload.get('text') or 'Template Text'
+    print(text)
 
-    # if request.method == 'POST':
-    #     print(request.form)
-    #     print(request.form.get('text'))
-    #     text = request.form.get('Start')
-    #     print(text)
-    # else:
-    #     text = request.args.get('text')
-
-    text = None
-
-    res = {'result': 'Did not receive text',
-           'headers': {'Access-Control-Allow-Origin': '*',
-                       'Access-Control-Allow-Headers': 'Content-Type,Authorization',
-                       'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS'}}
-
-    response = make_response(jsonify({'result': 'no text'}))
+    response = make_response(jsonify({'result': text + ' COMPLETION'}))
     response.headers.add('Access-Control-Allow-Origin', '*')
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
 
-    print(response)
-    print(response.headers)
     return response
 
 
