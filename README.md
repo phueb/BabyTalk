@@ -28,7 +28,7 @@ chmod +x .git/hooks/post-receive
 
 To install `flask`:
 ```bash
-virtualenv --never-download -p python2.6 /home2/huebner3/www/babytalk/venv
+virtualenv --never-download -p python2.6 PATH_TO_WWW/babytalk/venv
 source venv/bin/activate
 pip install flask --index-url https://pypi.org/simple
 deactivate

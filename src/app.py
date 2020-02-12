@@ -1,5 +1,4 @@
 from flask import Flask, request, make_response
-# import numpy as np
 from flask import jsonify
 
 
@@ -7,16 +6,16 @@ app = Flask(__name__)
 app.config.from_pyfile('server_configs.py')
 
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST', 'GET'])
 def demo():
     """
-    requires that incoming request is JSOn formatted.
-    return JSON response, with attribute "result" that contains teh completed string.
+    requires that incoming request is JSON formatted.
+    return JSON response, with attribute "result" that contains the completed string.
     """
-    print(request.form)
-    payload = request.get_json()
-    text = payload.get('text') or 'Template Text'
-    print(text)
+    if request.form.get('text') is not None:
+        text = request.form.get('text')
+    else:
+        text = 'BAD'
 
     response = make_response(jsonify({'result': text + ' COMPLETION'}))
     response.headers.add('Access-Control-Allow-Origin', '*')
