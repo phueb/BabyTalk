@@ -17,7 +17,7 @@ def demo():
     else:
         text = 'BAD'
 
-    response = make_response(jsonify({'result': text + ' COMPLETION'}))
+    response = make_response(jsonify({'result': text + ' !'}))
     response.headers.add('Access-Control-Allow-Origin', '*')
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
